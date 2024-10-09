@@ -22,7 +22,7 @@ The Decentralized File Storage System is a web-based application built on web3 t
 
 - Front-end: HTML, CSS, JavaScript
 
-- Back-end : Solidity, Hardhat(localhost) [Later deployed on mumbai testnet]
+- Back-end : Solidity, Hardhat(localhost) [Later deployed on Sepolia testnet]
 
 - Blockchain Integration: Web3.js
 
