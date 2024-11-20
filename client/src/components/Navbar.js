@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Connectwallet from "./Connectwallet";
 
 const Navbar = () => {
+  const isauth = window.localStorage.getItem("auth")
   const [isMobile, setIsMobile] = useState(false);
 
   // Listen for changes in screen size
@@ -30,15 +31,25 @@ const Navbar = () => {
         className={isMobile ? "nav-links-mobile active" : "nav-links"}
         onClick={() => setIsMobile(false)}
       >
-        <Link to="/auth/signin/level1" className="item">
+        {!isauth?<>
+          <Link to="/auth/signin/level1" className="item">
           <li>login</li>
         </Link>
         <Link to="/auth/signup/level1" className="item">
           <li>Signup</li>
         </Link>
+        </>
+        :
+        <>
         <Link to="/Secondpage" className="item">
           <li>Upload</li>
         </Link>
+        <li onClick={()=>{
+          window.localStorage.clear()
+          navigator("auth/signin/level1")
+        }}>Logout</li>
+        </>
+        }
         <Link className="item">
           <li>
             <Connectwallet />

@@ -10,8 +10,14 @@ import img1 from "./images/first-image-min.png";
 import img2 from "./images/second-image-min.png";
 import img3 from "./images/third-image-min.png";
 import Navbar from "./Navbar";
+import {useNavigate} from "react-router-dom"
 
 function Firstpage() {
+  const navigate = useNavigate()
+  const isauth = window.localStorage.getItem("auth")
+  if(!isauth){
+    navigate("/auth/signin/level1")
+  }
   const [imageSrc, setImageSrc] = useState(img3);
 
   const handleHeadingClick = (newImageSrc) => {
