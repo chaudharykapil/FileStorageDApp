@@ -3,7 +3,11 @@
 pragma solidity >=0.7.0 <0.9.0;
 
 contract Upload {
-  
+    struct User {
+        string password1;
+        string password2;
+        string password3;
+    }
   struct Access{
      address user; 
      bool access; //true or false
@@ -12,6 +16,7 @@ contract Upload {
   mapping(address=>mapping(address=>bool)) ownership;
   mapping(address=>Access[]) accessList;
   mapping(address=>mapping(address=>bool)) previousData;
+  mapping(address => User) private users;
 
   function add(address _user,string memory url) external {
       value[_user].push(url);
@@ -54,4 +59,31 @@ contract Upload {
     }
     value[msg.sender].pop();
   }
+
+    //Auth Endpoints
+
+    function compareStrings(string memory a, string memory b) public pure returns (bool) {
+        return keccak256(abi.encodePacked(a)) == keccak256(abi.encodePacked(b));
+    }
+  function register( string memory _password1,string memory _password2,string memory _password3) public {
+        
+        require(bytes(_password1).length > 0, "Password 1 cannot be empty");
+        require(bytes(_password2).length > 0, "Password 2 cannot be empty");
+        require(bytes(_password3).length > 0, "Password 3 cannot be empty");
+        require(bytes(users[msg.sender].password1).length <= 0 , "User already registered");
+
+
+        // Store the user details
+        users[msg.sender] = User(_password1,_password2,_password3);
+
+        //emit UserRegistered(msg.sender, _username);
+    }
+    function authenticate(string memory _password1,string memory _password2,string memory _password3) public view returns (bool) {
+        require(bytes(users[msg.sender].password1).length > 0, "User not registered");
+
+        // Compare the stored password with the provided one
+        return keccak256(abi.encodePacked(users[msg.sender].password1)) == keccak256(abi.encodePacked(_password1)) && 
+        keccak256(abi.encodePacked(users[msg.sender].password2)) == keccak256(abi.encodePacked(_password2)) && 
+        keccak256(abi.encodePacked(users[msg.sender].password3)) == keccak256(abi.encodePacked(_password3));
+    }
 }

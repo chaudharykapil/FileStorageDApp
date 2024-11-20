@@ -6,14 +6,7 @@ import { useState, useEffect } from "react";
 import "./Secondfile.css";
 import "./FileUpload.css";
 import FileUpload from "./FileUpload";
-import Modal from "./Modal";
 import Display from "./Display";
-import Discordsvg from "./Discordsvg";
-import Twittersvg from "./Twittersvg";
-import Instagramsvg from "./Instagramsvg";
-import SecureUpload from "./images/Secure Upload.png";
-import ShareShield from "./images/Share Shield.png";
-import AccessLock from "./images/Acesslock.png";
 import {contract_address} from "../CONSTANT"
 
 

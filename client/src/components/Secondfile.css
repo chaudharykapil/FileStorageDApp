@@ -12,7 +12,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  margin-top: 70px;
+  margin-top: 150px;
+  width: 100vw;
 }
 
 .file-container h1 {
