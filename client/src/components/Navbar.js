@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import Connectwallet from "./Connectwallet";
 
 const Navbar = () => {
+  const navigate = useNavigate()
   const isauth = window.localStorage.getItem("auth")
   const [isMobile, setIsMobile] = useState(false);
 
@@ -46,7 +47,7 @@ const Navbar = () => {
         </Link>
         <li onClick={()=>{
           window.localStorage.clear()
-          navigator("auth/signin/level1")
+          navigate("/auth/signin/level1")
         }}>Logout</li>
         </>
         }
