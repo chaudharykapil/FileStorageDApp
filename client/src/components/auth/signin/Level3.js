@@ -161,7 +161,9 @@ const Level3 = () => {
           window.localStorage.setItem("auth","true")
           navigate("/")
         }
-      })
+      },
+      console.log
+    )
     }
   return (
     <>
